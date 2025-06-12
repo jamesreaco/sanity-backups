@@ -2,6 +2,8 @@
 
 An open-source backup solution for websites and apps built with Sanity.
 
+<img width="1391" alt="demo" src="https://github.com/user-attachments/assets/1a48b862-6833-4447-9415-8f34ed5e5f28" />
+
 ## Tech Stack
 
 * [Next.js](https://nextjs.org/)
