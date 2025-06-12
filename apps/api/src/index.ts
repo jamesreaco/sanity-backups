@@ -56,7 +56,7 @@ app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) =
     
     const uploadParams = {
       Bucket: process.env.S3_BUCKET_NAME,
-      Key: `sanity-backups/${filename}`,
+      Key: `${filename}`,
       Body: fileContent,
       ContentType: 'application/gzip',
       Metadata: {
@@ -76,7 +76,7 @@ app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) =
     res.send({
       status: 'OK',
       message: 'Backup was successful and uploaded to S3',
-      s3Location: `sanity-backups/${filename}`,
+      s3Location: `${filename}`,
       etag: s3Result.ETag,
     });
     
