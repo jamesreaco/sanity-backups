@@ -30,7 +30,7 @@ This open source project is intended to be used locally. If you want to deploy i
 
 This project uses Amazon S3 to store the generated backups so you'll need to [create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
 
-#### Step 1: Sign in to AWS
+#### Step 1: Access AWS Console
 
 1. Go to the AWS Console.
 2. Log in with your credentials.
@@ -46,39 +46,41 @@ This project uses Amazon S3 to store the generated backups so you'll need to [cr
 2. Fill out the bucket details:
     - Bucket name: Must be globally unique (e.g. my-app-bucket-2025).
     - AWS Region: Choose the region closest to your users or application.
-
-#### Step 4: Create Bucket
-
-- Click “Create bucket” at the bottom of the page.
+3. Click “Create bucket” at the bottom of the page.
 
 ### Create an IAM user.
 
-To access our S3 bucket we need to create an IAM user to get Access and Secret Access keys.
+To access the S3 bucket from an external application requires access and secret access keys, you can generate these by creating an IAM user.
 
 #### Step 1: Access AWS Console
 
 1. Go to the AWS Console.
 2. Log in with your credentials.
-3. In the search bar at the top, type "IAM" and select IAM (Identity and Access Management) from the dropdown.
+3. 
 
-#### Step 2: Navigate to Users
+#### Step 2: Navigate to IAM (Identity and Access Management)
+
+1. In the search bar at the top, type "IAM" and select IAM from the dropdown.
+2. This will take you to the IAM dashboard.
+
+#### Step 3: Navigate to Users
 
 1. In the IAM dashboard, click on "Users" in the left sidebar.
 2. Click the "Create user" button (orange button on the right).
 
-#### Step 3: Set User Details
+#### Step 4: Set User Details
 
 1. User name: Enter a descriptive name like `sanity-backup-user` or `s3-backup-service`.
 2. Leave "Provide user access to the AWS Management Console" unchecked.
 3. Click "Next".
 
-#### Step 4: Set Permissions
+#### Step 5: Set Permissions
 
-1. Click "Attach policies directly" and choose `AmazonS3FullAccess`.
+1. Click "Attach policies directly" and add `AmazonS3FullAccess`.
 2. Click "Next".
 3. Review your user details then click "Create user".
 
-#### Step 5: Create access and secret access keys
+#### Step 6: Create access and secret access keys
 
 3. In the "Users" table click on your newly created user.
 6. In the summary section click on "Create access key".
@@ -90,9 +92,9 @@ To access our S3 bucket we need to create an IAM user to get Access and Secret A
 
 Create a `.env` file in the root directory and add the following environment variables:
 
-- `AWS_REGION` - The AWS Region you choose when creating your bucket.
-- `AWS_ACCESS_KEY_ID` - The Access key we created in the previous steps.
-- `AWS_SECRET_ACCESS_KEY` - The Secret Access Key we created in the previous steps.
+- `AWS_REGION` - The AWS Region you chose when creating your bucket.
+- `AWS_ACCESS_KEY_ID` - The access key you created in the previous steps.
+- `AWS_SECRET_ACCESS_KEY` - The secret access key you created in the previous steps.
 - `S3_BUCKET_NAME` - The name you gave your S3 bucket.
 
 ### Install dependencies
@@ -119,6 +121,8 @@ Navigate to the root directory and start the development servers by running the 
 | :------------------------ | :----------------------------------------------- |
 | `npm run dev`| Starts local dev servers at http://localhost:3000 (web) and http://localhost:3001 (api)
  
+If you have any questions or need help getting set up feel free to send me an email hello@jamesrea.co
+
 ## Author
 
 #### James Rea
