@@ -105,7 +105,7 @@ Run this command in your terminal in the root directory:
 
 ### Setup Convex
 
-Navigate to the web directory using `cd apps/web` and run the following command to set up a [Convex deployment](https://docs.convex.dev/quickstart/nextjs). This will prompt you to log into Convex with GitHub, create a project (or select an exisiting one), and save your production and deployment URLs. 
+Navigate to the web directory using `cd apps/web` and run the following command to set up a [Convex deployment](https://docs.convex.dev/quickstart/nextjs). This will prompt you to log into your Convex account with GitHub, create a project (or select an exisiting one), and save your production and deployment URLs. 
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
