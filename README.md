@@ -20,23 +20,35 @@ An open-source backup solution for websites and apps built with Sanity.
 * Create on-demand backups.
 * Download previously generated backups.
 
+## ⚠️ Important - Please Read
+
+This open source project is intended to be used locally. If you want to deploy it on the web you will need to add authentication. Convex has first-class support for [Clerk](https://docs.convex.dev/auth/clerk) and [Auth0](https://docs.convex.dev/auth/auth0), as well as their own auth solution [Convex Auth](https://labs.convex.dev/auth).
+
 ## Getting Started
 
 ### Install dependencies
 
-Run this command in your terminal at the root of the project:
+Run this command in your terminal in the root directory:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
 | `npm install`| Installs dependencies.|
 
-### Start a local server
+### Setup Convex
 
-Run this command at the root of the project.
+Navigate to the web directory using `cd apps/web` and run the following command to set up a [Convex deployment](https://docs.convex.dev/quickstart/nextjs). This will prompt you to log into Convex with GitHub, create a project (or select an exisiting one), and save your production and deployment URLs. 
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm run dev`| Starts local dev server at http://localhost:3000
+| `npx convex dev`| Sets up a convex dev deployment.|
+
+### Start a local server
+
+Navigate to the root directory and start the development servers by running the following command:
+
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm run dev`| Starts local dev servers at http://localhost:3000 (web) and http://localhost:3001 (api)
  
 ## Author
 
