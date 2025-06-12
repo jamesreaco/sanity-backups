@@ -53,17 +53,18 @@ This project uses Amazon S3 to store the generated backups so you'll need to [cr
 
 ### Create an IAM user.
 
-To access our S3 bucket we need to create an IAM user to get an 
+To access our S3 bucket we need to create an IAM user to get Access and Secret Access keys.
 
 #### Step 1: Access AWS Console
 
-1. Go to the AWS Management Console and sign in
-2. In the search bar at the top, type "IAM" and select IAM (Identity and Access Management) from the dropdown
+1. Go to the AWS Console.
+2. Log in with your credentials.
+3. In the search bar at the top, type "IAM" and select IAM (Identity and Access Management) from the dropdown.
 
 #### Step 2: Navigate to Users
 
 1. In the IAM dashboard, click on "Users" in the left sidebar.
-2. Click the "Create user" button (orange button on the right)
+2. Click the "Create user" button (orange button on the right).
 
 #### Step 3: Set User Details
 
@@ -75,7 +76,7 @@ To access our S3 bucket we need to create an IAM user to get an
 
 1. Click "Attach policies directly" and choose `AmazonS3FullAccess`.
 2. Click "Next".
-3. Review your user details then click "Create user"
+3. Review your user details then click "Create user".
 
 #### Step 5: Create access and secret access keys
 
@@ -89,10 +90,10 @@ To access our S3 bucket we need to create an IAM user to get an
 
 Create a `.env` file in the root directory and add the following environment variables:
 
-- `AWS_REGION`
-- `AWS_ACCESS_KEY_ID`
-- `AWS_SECRET_ACCESS_KEY`
-- `S3_BUCKET_NAME`
+- `AWS_REGION` - The AWS Region you choose when creating your bucket.
+- `AWS_ACCESS_KEY_ID` - The Access key we created in the previous steps.
+- `AWS_SECRET_ACCESS_KEY` - The Secret Access Key we created in the previous steps.
+- `S3_BUCKET_NAME` - The name you gave your S3 bucket.
 
 ### Install dependencies
 
