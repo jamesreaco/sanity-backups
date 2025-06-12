@@ -26,13 +26,13 @@ This open source project is intended to be used locally. If you want to deploy i
 
 ## Getting Started
 
-### Create an S3 bucket
+### 1). Create an S3 bucket
 
 This project uses Amazon S3 to store the generated backups so you'll need to [create an S3 bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/create-bucket-overview.html).
 
-#### Step 1: Access AWS Console
+#### Step 1: Access AWS Console 
 
-1. Go to the AWS Console.
+1. Go to the [AWS Console](https://aws.amazon.com/).
 2. Log in with your credentials.
 
 #### Step 2: Navigate to S3
@@ -48,15 +48,14 @@ This project uses Amazon S3 to store the generated backups so you'll need to [cr
     - AWS Region: Choose the region closest to your users or application.
 3. Click “Create bucket” at the bottom of the page.
 
-### Create an IAM user.
+### 2). Create an IAM user.
 
 To access the S3 bucket from an external application requires access and secret access keys, you can generate these by creating an IAM user.
 
 #### Step 1: Access AWS Console
 
-1. Go to the AWS Console.
+1. Go to the [AWS Console](https://aws.amazon.com/).
 2. Log in with your credentials.
-3. 
 
 #### Step 2: Navigate to IAM (Identity and Access Management)
 
@@ -88,7 +87,11 @@ To access the S3 bucket from an external application requires access and secret 
 8. Add a description and click "Create access key".
 9. Copy your access key and secret access key as we need to add them to our project as environment variables.
 
-### Environment Variables
+### 3). Install the project
+
+Clone this repository and open it your code editor.
+
+### 4). Add Environment Variables
 
 Create a `.env` file in the root directory and add the following environment variables:
 
@@ -97,7 +100,7 @@ Create a `.env` file in the root directory and add the following environment var
 - `AWS_SECRET_ACCESS_KEY` - The secret access key you created in the previous steps.
 - `S3_BUCKET_NAME` - The name you gave your S3 bucket.
 
-### Install dependencies
+### 4). Install dependencies
 
 Run this command in your terminal in the root directory:
 
@@ -113,7 +116,7 @@ Navigate to the web directory using `cd apps/web` and run the following command 
 | :------------------------ | :----------------------------------------------- |
 | `npx convex dev`| Sets up a convex dev deployment.|
 
-### Start a local server
+### 5). Start a local server
 
 Navigate to the root directory and start the development servers by running the following command:
 
