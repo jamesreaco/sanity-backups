@@ -53,6 +53,8 @@ app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) =
     console.log('Export finished', exportRes);
     
     const fileContent = fs.readFileSync(filename);
+
+    console.log('Uploading to S3...');
     
     const uploadParams = {
       Bucket: process.env.S3_BUCKET_NAME,
