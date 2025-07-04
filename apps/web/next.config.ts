@@ -9,6 +9,25 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  experimental: {
+    serverComponentsExternalPackages: ['@sanity/export'],
+  },
+  serverRuntimeConfig: {
+    maxDuration: 300,
+  },
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Connection',
+            value: 'keep-alive',
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;
