@@ -1,5 +1,7 @@
 import { v } from "convex/values";
-import { mutation, query } from "./_generated/server";
+import { mutation, query, action } from "./_generated/server";
+import { deleteBackupFromS3 as deleteBackupFromS3Action } from "../src/actions/deleteBackup";
+import { api } from "./_generated/api";
 
 export const createBackup = mutation({
   args: {
@@ -62,10 +64,30 @@ export const listBackups = query({
   }
 })
 
-export const deleteBackup = mutation({
+export const deleteBackupFromConvex = mutation({
   args: { id: v.id("backups") },
   handler: async (ctx, args) => {
     const { id } = args;
     await ctx.db.delete(id);
+  }
+})
+
+export const deleteBackup = action({
+  args: { 
+    id: v.id("backups"),
+    objectKey: v.string() 
+  },
+  handler: async (ctx, args) => {
+    const { id, objectKey } = args;
+    
+    await ctx.runMutation(api.backups.deleteBackupFromConvex, { id });
+    
+    const s3Result = await deleteBackupFromS3Action({ objectKey });
+    
+    if (!s3Result.success) {
+      throw new Error(`Failed to delete from S3: ${s3Result.error}`);
+    }
+    
+    return { success: true, deletedFromConvex: true, deletedFromS3: true };
   }
 })

@@ -2,7 +2,7 @@
 
 import { toast } from "sonner";
 import { useState } from "react";
-import { useMutation } from "convex/react";
+import { useAction, useMutation } from "convex/react";
 import { allColumns } from "./BackupsTableColumns";
 import { api } from "../../../../../convex/_generated/api";
 import { Doc } from "../../../../../convex/_generated/dataModel";
@@ -32,8 +32,9 @@ interface DataTableProps<TData> {
 export function BackupsTable<TData, TValue>({ data, website }: DataTableProps<TData>) {
 
   const [rowSelection, setRowSelection] = useState({});
-  const deleteBackup = useMutation(api.backups.deleteBackup);
   
+  const deleteBackup = useAction(api.backups.deleteBackup);
+
   const table = useReactTable({
     data,
     columns: (allColumns as ColumnDef<TData, TValue>[]),
@@ -50,7 +51,7 @@ export function BackupsTable<TData, TValue>({ data, website }: DataTableProps<TD
     const selectedRows = table.getFilteredSelectedRowModel().rows;
     for (const row of selectedRows) {
       const backup = row.original as Doc<"backups">;
-      await deleteBackup({ id: backup._id });
+      await deleteBackup({ id: backup._id, objectKey: backup.s3Location });
       toast.success('Backup deleted successfully');
     }
     setRowSelection({});
