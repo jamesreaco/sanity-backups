@@ -10,7 +10,11 @@ export function dateFormatted() {
   return [year, month, day].join('-')
 }
 
+export function slugify(text: string) {
+  return text.toLowerCase().replace(/ /g, '-').replace(/[^\w-]+/g, '')
+}
+
 export function createFilename(projectId: string, dataset: string, projectName: string) {
   const backupDate = dateFormatted()
-  return `${projectName}-${backupDate}-${dataset}-${projectId}.tar.gz`
+  return `${slugify(projectName)}-${backupDate}-${dataset}-${projectId}.tar.gz`
 }
