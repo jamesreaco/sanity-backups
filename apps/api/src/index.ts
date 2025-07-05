@@ -36,9 +36,9 @@ const s3Client = new S3Client({
   },
 });
 
-app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) => {
+app.get('/api/backup/:projectId/:dataset/:apiVersion/:token/:projectName', async (req, res) => {
   
-  const { projectId, dataset, apiVersion, token } = req.params;
+  const { projectId, dataset, apiVersion, token, projectName } = req.params;
   const backupId = `${projectId}-${dataset}-${Date.now()}`;
   
   backupStatus.set(backupId, {
@@ -47,7 +47,7 @@ app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) =
     startTime: Date.now(),
   });
   
-  performBackup(backupId, projectId, dataset, apiVersion, token).catch(error => {
+  performBackup(backupId, projectId, dataset, apiVersion, token, projectName).catch(error => {
     console.error('Background backup failed:', error);
     backupStatus.set(backupId, {
       status: 'failed',
@@ -64,7 +64,7 @@ app.get('/api/backup/:projectId/:dataset/:apiVersion/:token', async (req, res) =
   });
 });
 
-async function performBackup(backupId: string, projectId: string, dataset: string, apiVersion: string, token: string) {
+async function performBackup(backupId: string, projectId: string, dataset: string, apiVersion: string, token: string, projectName: string) {
   try {
     console.log(`Starting backup for project: ${projectId}, dataset: ${dataset}`);
 
@@ -76,7 +76,7 @@ async function performBackup(backupId: string, projectId: string, dataset: strin
       useCdn: false,
     });
 
-    const filename = createFilename(projectId, dataset);
+    const filename = createFilename(projectId, dataset, projectName);
     
     backupStatus.set(backupId, {
       status: 'exporting',
@@ -140,7 +140,7 @@ async function performBackup(backupId: string, projectId: string, dataset: strin
   } catch (error) {
     console.error('Backup process failed:', error);
     
-    const filename = createFilename(projectId, dataset);
+    const filename = createFilename(projectId, dataset, projectName);
 
     if (fs.existsSync(filename)) {
       try {

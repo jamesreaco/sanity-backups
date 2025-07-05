@@ -11,7 +11,7 @@ import { Doc, Id } from '../../../../../convex/_generated/dataModel';
 
 export default function CreateBackupButton({ website, classNames }: { website: Doc<"websites">, classNames?: string }) {
 
-  const { sanityConfig } = website;
+  const { title, sanityConfig } = website;
   const { projectId, dataset, apiVersion, token } = sanityConfig;
 
   const createBackup = useMutation(api.backups.createBackup);
@@ -31,7 +31,7 @@ export default function CreateBackupButton({ website, classNames }: { website: D
 
       toast.success('Backup started');
 
-      const response = await fetch(`/api/backup/${projectId}/${dataset}/${apiVersion}/${token}`);
+      const response = await fetch(`/api/backup/${projectId}/${dataset}/${apiVersion}/${token}/${title}`);
       const data = await response.json();
 
       if (data.status === "OK" && data.backupId) {

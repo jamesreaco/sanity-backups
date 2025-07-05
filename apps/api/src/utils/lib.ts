@@ -10,7 +10,7 @@ export function dateFormatted() {
   return [year, month, day].join('-')
 }
 
-export function createFilename(projectId: string, dataset: string) {
-  const today = dateFormatted()
-  return `${projectId}-${dataset}-${today}.tar.gz`
+export function createFilename(projectId: string, dataset: string, projectName: string) {
+  const backupDate = dateFormatted()
+  return `${projectName}-${backupDate}-${dataset}-${projectId}.tar.gz`
 }
